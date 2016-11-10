@@ -25,6 +25,10 @@ script:
   - cat /var/log/odoo/odoo.log
   - ps aux | grep odoo
   - netstat -tapune
+  - sudo /etc/init.d/odoo restart
+  - cat /var/log/odoo/odoo.log
+  - ps aux | grep odoo
+  - netstat -tapune
 #  - >
 #    ansible-playbook -i local, -c local tests/test.yml --sudo
 #    | grep -q 'changed=0.*failed=0'
