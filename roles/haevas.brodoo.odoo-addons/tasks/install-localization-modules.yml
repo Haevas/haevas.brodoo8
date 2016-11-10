@@ -1,0 +1,29 @@
+---
+
+- name: Clone localization modules using git+https
+  git: repo={{ item.repo }}
+       dest={{ item.dest }}
+       depth=1
+       force=yes
+       recursive=yes
+       version="'{{ brodoo_version }}'"
+  with_items:
+    -
+      repo: https://github.com/odoo-brazil/l10n-brazil.git
+      dest: "{{ brodoo_repo_dest_l10n }}/l10n-brazil"
+    -
+      repo: https://github.com/odoo-brazil/account-fiscal-rule.git
+      dest: "{{ brodoo_repo_dest_l10n }}/account-fiscal-rule"
+    -
+      repo: https://github.com/odoo-brazil/odoo-brazil-eletronic-documents.git
+      dest: "{{ brodoo_repo_dest_l10n }}/odoo-brazil-eletronic-documents"
+#    -
+#      repo: https://github.com/OCA/server-tools.git
+#      dest: "{{ brodoo_repo_dest_l10n }}/server-tools"
+
+- name: Clone localization - server-tools using git+https
+  git: repo=https://github.com/OCA/server-tools.git
+    dest={{ brodoo_repo_dest_l10n }}/server-tools
+    depth=1
+    recursive=yes
+    version="8.0"

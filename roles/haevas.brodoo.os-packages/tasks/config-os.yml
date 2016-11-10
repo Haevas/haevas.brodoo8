@@ -1,0 +1,20 @@
+---
+- name: Set /etc/localtime
+  command: /bin/cp /usr/share/zoneinfo/{{ brodoo_timezone }} /etc/localtime
+
+#- name: Set timezone (/etc/timezone)
+#  template: src=locale/timezone dest=/etc/timezone
+#  notify: update tzdata
+
+- name: Install ntp packages
+  action: package pkg=ntp state=installed
+
+- name: Add group
+  group: name={{ brodoo_group }} state=present
+
+- name: Add user
+  user: name={{ brodoo_user }} shell=/bin/bash groups={{ brodoo_group }} append=yes system=yes
+
+#- name: Upgrade distribution
+#  apt: upgrade=dist update_cache=yes
+#  when: is_travis is not defined

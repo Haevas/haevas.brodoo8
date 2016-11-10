@@ -1,0 +1,5 @@
+---
+locale_enabled: yes
+locale_locales: "{{ brodoo_locales }}"
+locale: 'pt_BR.UTF-8'
+language: 'pt_BR:pt:en'

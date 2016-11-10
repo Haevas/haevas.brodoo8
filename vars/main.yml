@@ -1,0 +1,61 @@
+---
+#ansible_python_interpreter: /usr/bin/python2
+#is_travis: "{{ lookup('env', 'TRAVIS')|default(false, true) }}"
+
+# [postgresql]
+postgresql_version: "{{ brodoo_db_version }}"
+#postgresql_encoding: 'UTF-8'
+#postgresql_locale: 'en_US.UTF-8'
+#postgresql_listen_addresses:
+#  - '*'
+
+#postgresql_users:
+#  - name: odoo
+#    pass: odoo
+#    encrypted: no
+
+postgresql_pg_hba_default:
+  - { type: local, database: all, user: '{{ postgresql_admin_user }}', address: '', method: '{{ postgresql_default_auth_method }}', comment: '' }
+  - { type: local, database: all, user: all, address: '',             method: '{{ postgresql_default_auth_method }}', comment: '"local" is for Unix domain socket connections only' }
+  - { type: host,  database: all, user: all, address: '0.0.0.0/0', method: '{{ postgresql_default_auth_method }}', comment: 'IPv4 local connections:' }
+#  - { type: host,  database: all, user: all, address: '0.0.0.0/0', method: 'md5', comment: 'IPv4 local connections:' }
+  - { type: host,  database: all, user: all, address: '127.0.0.1/32', method: '{{ postgresql_default_auth_method }}', comment: 'IPv4 local connections:' }
+  - { type: host,  database: all, user: all, address: '::1/128',      method: '{{ postgresql_default_auth_method }}', comment: 'IPv6 local connections:' }
+
+
+# [odoo]
+odoo_version: "{{ brodoo_version }}"
+odoo_repo_type: git
+odoo_repo_url: "{{ brodoo_repo_url }}"
+odoo_repo_depth: 1
+odoo_repo_rev: "{{ brodoo_repo_rev }}"
+odoo_repo_dest: "{{ brodoo_repo_dest }}"
+odoo_repo_update: yes
+odoo_workdir: "{{ odoo_repo_dest }}"
+#odoo_rootdir: "{{ odoo_repo_dest }}/server"
+odoo_rootdir: "{{ odoo_repo_dest }}"
+odoo_config_addons_path: "{{ brodoo_config_addons_path }}"
+    #  - "{{ odoo_repo_dest }}/server/openerp/addons"
+    #  - "{{ odoo_repo_dest }}/server/addons"
+    #  - "{{ odoo_repo_dest }}/addons_oca_web"
+    #  - "{{ odoo_repo_dest }}/addons_oca_connector"
+    #  - "{{ odoo_repo_dest }}/addons"
+odoo_logdir: "{{ brodoo_logdir }}"
+odoo_config_admin_passwd: "{{ brodoo_admin_passwd }}"
+#odoo_config_unaccent: True
+#odoo_config_server_wide_modules: web,web_kanban,connector
+#odoo_config_server_wide_modules: web,web_kanban,connector,auth_signup,auth_crypt,base_action_rule,fetchmail,analytic,sale_crm,account_chart,stock_account,sale_stock
+
+#odoo_config_workers: 8
+#odoo_wkhtmltox_version: 0.12.1
+
+# Tasks related to PostgreSQL
+odoo_postgresql_set_user: True
+#odoo_postgresql_active_unaccent: True
+
+odoo_config_db_host: "{{ brodoo_db_host }}"
+odoo_config_db_user: "{{ brodoo_db_user }}"
+odoo_config_db_passwd: "{{ brodoo_db_passwd }}"
+#odoo_config_db_template: template0
+odoo_user_sshkeys: "files/id_rsa.pub"
+#odoo_user_sshkeys: False

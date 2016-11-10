@@ -1,0 +1,8 @@
+---
+- name: Install localization modules
+  become: yes
+  include: install-localization-modules.yml
+
+- name: Config app
+  become: yes
+  include: config-app.yml

@@ -1,0 +1,20 @@
+# .gitignore
+
+# Log files
+*.log
+
+# Hidden Vagrant-directory
+.vagrant
+
+# Backup files (e.g. Vim, Gedit, etc.)
+*~
+
+# Vagrant base boxes (you never know when someone puts one in the repository)
+*.box
+
+# Roles
+roles/Stouts.locale
+roles/ANXS.postgresql
+roles/sebalix.odoo
+
+*.retry

@@ -1,0 +1,27 @@
+---
+
+galaxy_info:
+  author: vonpupp
+  company: Haevas
+  description: Install odoo on ubuntu/debian based systems
+  license: GPLv3
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+    - name: Debian
+      versions:
+        - jessie
+        - wheezy
+
+  galaxy_tags:
+    - cloud
+    - system
+    - web
+    - odoo
+    - brazil
+
+dependencies:
+  - { role: ANXS.postgresql }
+  - { role: sebalix.odoo }

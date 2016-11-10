@@ -1,0 +1,17 @@
+#!/usr/bin/env ansible-playbook --inventory-file=inventory
+
+---
+- hosts: all
+  become: True
+
+  roles:
+    #- { role: Stouts.locale,			    tags: ['brodoo_packages'] }
+    - { role: haevas.brodoo.os-packages,    tags: ['brodoo_os_packages'] }
+    - { role: haevas.brodoo.pip-packages,   tags: ['brodoo_pip_packages'] }
+    - { role: ANXS.postgresql,              tags: ['brodoo_database'] }
+    - { role: sebalix.odoo,                 tags: ['brodoo_odoo_core'] }
+    - { role: haevas.brodoo.odoo-addons,    tags: ['brodoo_odoo_addons'] }
+
+  vars_files:
+    - 'defaults/main.yml'
+    - 'vars/main.yml'

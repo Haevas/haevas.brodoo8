@@ -1,0 +1,91 @@
+---
+#- name: Upgrade distribution
+#  apt: upgrade=dist update_cache=yes
+#  when: is_travis is not defined or not is_travis
+
+- name: Install packages list
+  apt: name={{ item }} state=installed update_cache=yes
+  with_items:
+    - antiword
+    - git
+    - libpq-dev
+    - libxml2-dev
+    - libxmlsec1-dev
+    - libjpeg-dev
+    - libjpeg8-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - libpng12-dev
+    - zlib1g-dev
+    - poppler-utils
+    - python-babel
+    - python-jinja2
+    - python-mako
+    - python-markupsafe
+    - python-werkzeug
+    - python-argparse
+    - python-cups
+    - python-dateutil
+    - python-decorator
+    - python-dev
+    - python-docutils
+    - python-feedparser
+    - python-feedparser
+    - python-gdata
+    - python-geoip
+    - python-gevent
+    - python-greenlet
+    - python-imaging
+    - python-ldap
+    - python-libxslt1
+    - python-lxml
+    - python-mock
+    - python-openid
+    - python-passlib
+    - python-pdftools
+    - python-pip
+    - python-psutil
+    - python-psycopg2
+    - python-pypdf
+    - python-pybabel
+    - python-pychart
+    - python-pydot
+    - python-pyparsing
+    - python-reportlab
+    - python-requests
+    - python-setuptools
+    - python-simplejson
+    - python-six
+    - python-tz
+    - python-unicodecsv
+    - python-unittest2
+    - python-vatnumber
+    - python-vobject
+    - python-webdav
+    - python-wsgiref
+    - python-xlwt
+    - python-yaml
+    - python-yaml
+    - python-zsi
+    - vim
+    - supervisor
+
+      #
+      #- name: Upload fix-unicode script
+      #  copy: src="fix-unicode.sh"
+      #        dest="/tmp/fix-unicode.sh"
+      #        mode=0755
+      #
+      #- name: Execute script
+      #  sudo: yes
+      #  sudo_user: postgres
+      #  script: /tmp/fix-unicode.sh
+      #
+      ##- name: Ensure database is created
+      ##  sudo_user: postgres
+      ##  postgresql_db: name={{ db_name }}
+      ##                 encoding='UTF-8'
+      ##                 lc_collate='en_US.UTF-8'
+      ##                 lc_ctype='en_US.UTF-8'
+      ##                 template='template1'
+      ##                 state=present

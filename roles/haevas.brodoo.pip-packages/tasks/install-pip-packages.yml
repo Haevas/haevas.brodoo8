@@ -1,0 +1,30 @@
+---
+#- name: Upgrade pip
+#  pip: name=pip state=forcereinstall
+
+- name: Upload requirements file
+  copy: src="requirements2.txt"
+        dest="/tmp/requirements2.txt"
+        mode=0644
+
+- name: Install pip requirements2
+  pip: requirements=/tmp/requirements2.txt executable=pip2
+
+- name: Install geraldo via pip using git+https
+  pip: name=git+https://github.com/aricaldeira/geraldo.git
+    editable=false
+
+- name: Download pyxmlsec-0.3.0 from libre-entreprise.org
+  get_url: url=http://labs.libre-entreprise.org/download.php/430/pyxmlsec-0.3.0.tar.gz dest=/tmp/pyxmlsec-0.3.0.tar.gz
+- name: Install pyxmlsec-0.3.0 egg
+  pip: name='file:///tmp/pyxmlsec-0.3.0.tar.gz'
+#- name: Pip pyxmlsec-0.3.0
+#  pip: name=pyxmlsec version=0.3.0
+
+- name: Install PySPED via pip using git+https
+  pip: name=git+https://github.com/odoo-brazil/PySPED.git@{{ brodoo_version }}
+    editable=false
+
+- name: Pip PyXMLSec
+  pip: name=git+https://github.com/aricaldeira/pyxmlsec
+    editable=false

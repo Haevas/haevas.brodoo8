@@ -1,0 +1,36 @@
+---
+brodoo_enabled: yes
+
+# Locales
+brodoo_locales:
+  - pt_BR
+  - pt_BR.UTF-8
+brodoo_timezone: "America/Sao_Paulo"
+
+# Database
+brodoo_db_host: localhost
+brodoo_db_user: odoo
+brodoo_db_passwd: admin
+brodoo_db_version: 9.4
+
+# Odoo
+brodoo_version: 8.0
+brodoo_repo_rev: "8.0"
+brodoo_repo_url: https://github.com/OCA/OCB.git
+#brodoo_repo_url: https://github.com/odoo/odoo.git
+brodoo_user: odoo
+brodoo_group: odoo
+brodoo_admin_passwd: admin
+brodoo_repo_dest: "/home/{{ brodoo_user }}/odoo"
+brodoo_repo_dest_l10n: "{{ brodoo_repo_dest }}/localization"
+brodoo_repo_dest_addons: "{{ brodoo_repo_dest }}/addons"
+brodoo_logdir: "/var/log/{{ brodoo_user }}"
+brodoo_config_addons_path:
+  - "{{ brodoo_repo_dest }}/addons"
+  - "{{ brodoo_repo_dest }}/openerp/addons"
+  - "{{ brodoo_repo_dest_l10n }}/l10n-brazil"
+  - "{{ brodoo_repo_dest_l10n }}/account-fiscal-rule"
+  - "{{ brodoo_repo_dest_l10n }}/odoo-brazil-eletronic-documents"
+  - "{{ brodoo_repo_dest_l10n }}/server-tools"
+#  - "{{ brodoo_repo_dest }}/addons_oca_web"
+#  - "{{ brodoo_repo_dest }}/addons_oca_connector"

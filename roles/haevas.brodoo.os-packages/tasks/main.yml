@@ -1,0 +1,16 @@
+---
+- name: Config OS
+  become: yes
+  include: config-os.yml
+
+- name: Config Locale
+  become: yes
+  include: config-locale.yml
+
+- name: Install OS packages
+  become: yes
+  include: install-os-packages.yml
+
+#- name: Install pip packages
+#  become: yes
+#  include: install-pip-packages.yml

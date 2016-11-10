@@ -1,0 +1,15 @@
+---
+- name: Create Odoo binary symlink
+  file: src={{ brodoo_repo_dest }}/openerp-server
+        path=/usr/bin/odoo-server
+        state=link
+        force=yes
+
+- name: Create /etc/odoo directory
+  file: path=/etc/odoo state=directory
+
+- name: Create Odoo config symlink
+  file: src=/home/{{ brodoo_user }}/odoo.conf
+        path=/etc/odoo/odoo.conf
+        state=link
+        force=yes

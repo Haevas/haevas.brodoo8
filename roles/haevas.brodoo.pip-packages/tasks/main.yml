@@ -1,0 +1,4 @@
+---
+- name: Install pip packages
+  become: yes
+  include: install-pip-packages.yml

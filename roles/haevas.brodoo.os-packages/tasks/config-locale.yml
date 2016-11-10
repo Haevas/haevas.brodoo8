@@ -1,0 +1,49 @@
+#vars:
+#  host_locale: pt_BR.UTF-8
+#
+#  host_locale_dict: {
+#    LANG: "{{ host_locale }}",
+#    LC_COLLATE: "{{ host_locale }}",
+#    LC_CTYPE: "{{ host_locale }}",
+#    LC_MESSAGES: "{{ host_locale }}",
+#    LC_MONETARY: "{{ host_locale }}",
+#    LC_NUMERIC: "{{ host_locale }}",
+#    LC_TIME: "{{ host_locale }}",
+#    LC_ALL: "{{ host_locale }}",
+#  }
+# http://stackoverflow.com/questions/25573105/error-when-installing-pip-requirements-txt-with-ansible-but-not-when-doing-it-m
+
+#- name: Locale setup
+#  locale_gen: name={{ item }} state=present
+#  with_items:
+#    - pt_BR
+#    - pt_BR.UTF-8
+#    - en_US.UTF-8
+
+#- name: dev locale
+#  action: command sudo update-locale LC_ALL=en_US.UTF-8
+#- name: set default locale
+#  sudo: yes
+#  lineinfile: dest=/etc/default/locale
+#    regexp="LC_ALL"
+#    line="LC_ALL=\"en_US.UTF-8\""
+
+- name: Configuring locales
+  become: yes
+  become_method: sudo
+  locale_gen: name={{ item }} state=present
+  with_items:
+#    - en_US.UTF-8
+#    - es_ES.UTF-8
+    - pt_BR.UTF-8
+#    - fr_FR.UTF-8
+
+
+- name: Set default locale
+  lineinfile: dest=/etc/environment state=present regexp="^LC_ALL=" line="LC_ALL=pt_BR.utf8"
+
+- name: Generate locale
+  command: /usr/sbin/locale-gen {{ locale }}
+
+- name: Set locale
+  command: /usr/sbin/update-locale LANG={{ locale }} LC_ALL={{ locale }} LANGUAGE={{ language }}
