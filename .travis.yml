@@ -22,6 +22,7 @@ script:
   - ansible-playbook -i local, -c local test.yml --syntax-check
   - ansible-playbook -i local, -c local test.yml --sudo
   - echo $?
+  - cat /var/log/odoo/odoo.log
   - ps aux | grep odoo
   - netstat -tapune
 #  - >
