@@ -5,8 +5,8 @@ language: python
 python: "2.7"
 
 env:
-  - BRODOO_VERSION=8.0 ANSIBLE_VERSION="1.9,<2.0"
-  - BRODOO_VERSION=8.0 ANSIBLE_VERSION="2.0,<2.1"
+#  - BRODOO_VERSION=8.0 ANSIBLE_VERSION="1.9,<2.0"
+#  - BRODOO_VERSION=8.0 ANSIBLE_VERSION="2.0,<2.1"
   - BRODOO_VERSION=8.0 ANSIBLE_VERSION="2.1,<2.2"
 
 before_install:
@@ -21,6 +21,9 @@ script:
   - ansible-galaxy install --force -r requirements.yml -p roles
   - ansible-playbook -i local, -c local test.yml --syntax-check
   - ansible-playbook -i local, -c local test.yml --sudo
+  - echo $?
+  - ps aux | grep odoo
+  - netstat -tapune
 #  - >
 #    ansible-playbook -i local, -c local tests/test.yml --sudo
 #    | grep -q 'changed=0.*failed=0'
