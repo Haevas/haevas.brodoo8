@@ -21,24 +21,24 @@ script:
   - ansible-galaxy install --force -r requirements.yml -p roles
   - ansible-playbook -i local, -c local test.yml --syntax-check
   - ansible-playbook -i local, -c local test.yml --sudo
-  - echo $?
-  - cat /var/log/odoo/odoo.log
-  - ps aux | grep odoo
-  - netstat -tapune
-  - sudo /etc/init.d/odoo stop
-  - cat /var/log/odoo/odoo.log
-  - sudo /etc/init.d/odoo start
-    #  - sudo -H -u odoo bash -c 'python /home/odoo/odoo/odoo.py --debug --log-level=debug --config /home/odoo/odoo.conf'
-  - cat /var/log/odoo/odoo.log
-  - ps aux | grep odoo
-  - netstat -tapune
+#  - echo $?
+#  - cat /var/log/odoo/odoo.log
+#  - ps aux | grep odoo
+#  - netstat -tapune
+#  - sudo /etc/init.d/odoo stop
+#  - cat /var/log/odoo/odoo.log
+#  - sudo /etc/init.d/odoo start
+#    #  - sudo -H -u odoo bash -c 'python /home/odoo/odoo/odoo.py --debug --log-level=debug --config /home/odoo/odoo.conf'
+#  - cat /var/log/odoo/odoo.log
+#  - ps aux | grep odoo
+#  - netstat -tapune
+##  - >
+##    ansible-playbook -i local, -c local tests/test.yml --sudo
+##    | grep -q 'changed=0.*failed=0'
+##    && (echo 'Idempotence test: pass' && exit 0)
+##    || (echo 'Idempotence test: fail' && exit 1)
 #  - >
-#    ansible-playbook -i local, -c local tests/test.yml --sudo
-#    | grep -q 'changed=0.*failed=0'
-#    && (echo 'Idempotence test: pass' && exit 0)
-#    || (echo 'Idempotence test: fail' && exit 1)
-  - >
-    curl http://localhost:8069/web
-    | grep -q 'You should be redirected automatically to target URL'
-    && (echo 'App test: pass' && exit 0)
-    || (echo 'App test: fail' && exit 1)
+#    curl http://localhost:8069/web
+#    | grep -q 'You should be redirected automatically to target URL'
+#    && (echo 'App test: pass' && exit 0)
+#    || (echo 'App test: fail' && exit 1)
