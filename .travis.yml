@@ -21,6 +21,7 @@ script:
   - ansible-galaxy install --force -r requirements.yml -p roles
   - ansible-playbook -i local, -c local test.yml --syntax-check
   - ansible-playbook -i local, -c local test.yml --sudo
+  - curl http://localhost:8069/web
 #  - echo $?
 #  - cat /var/log/odoo/odoo.log
 #  - ps aux | grep odoo
