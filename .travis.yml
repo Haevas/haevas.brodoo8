@@ -26,7 +26,9 @@ script:
   - ps aux | grep odoo
   - netstat -tapune
   - sudo /etc/init.d/odoo stop
-  - sudo -H -u odoo bash -c 'python /home/odoo/odoo/odoo.py --debug --log-level=debug --config /home/odoo/odoo.conf'
+  - cat /var/log/odoo/odoo.log
+  - sudo /etc/init.d/odoo start
+    #  - sudo -H -u odoo bash -c 'python /home/odoo/odoo/odoo.py --debug --log-level=debug --config /home/odoo/odoo.conf'
   - cat /var/log/odoo/odoo.log
   - ps aux | grep odoo
   - netstat -tapune
